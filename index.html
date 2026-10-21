@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+  <title>Exercise 5: CSS Layout</title>
+  <!-- Created by K.A.Yang on 21-10-2026 -->
+  <meta charset="utf-8">
+  <style>
+    /* ---------- PART 2: Universal Box Model ---------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* ---------- PART 1: Typography & Colour ---------- */
+    body {
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+      font-family: Georgia, "Times New Roman", serif;   /* serif body text */
+      background-color: #0b0e14;                         /* deep space body background */
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(77, 208, 225, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(138, 110, 255, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 20% 30%, #16202c 0%, #0b0e14 80%);
+      color: #e3e9f2;
+    }
+
+    /* Headings use a sans-serif font */
+    h1, h2, h3 {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    header {
+      padding: 30px;
+      margin-bottom: 20px;              /* Part 2: space below header */
+      background-color: #151e2a;         /* panel background */
+      color: #ffffff;
+      position: relative;                /* Part 4: positioning context for badge */
+      border-radius: 14px;
+      border: 1px solid #2e3f54;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    /* subtle portal glow in the header corner */
+    header::after {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -5%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(77, 208, 225, 0.16) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #4dd0e1;                    /* accent cyan */
+      position: relative;
+    }
+
+    /* ---------- PART 1 & PART 4: Badge ---------- */
+    .badge {
+      padding: 5px 15px;
+      font-size: 0.8em;
+      font-weight: bold;
+      background-color: #f5b041;         /* warm gold accent */
+      color: #1a1300;                    /* dark text for contrast */
+      border-radius: 12px;               /* rounded corners */
+      width: fit-content;                /* just wide enough for text */
+      position: absolute;                /* Part 4: top-right of header */
+      top: 15px;
+      right: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 18px rgba(245, 176, 65, 0.35);
+      z-index: 1;
+    }
+
+    /* ---------- PART 3: Two-column layout ---------- */
+    #main-content {
+      padding: 25px;                     /* Part 2: inner spacing */
+      vertical-align: top;
+      display: inline-block;
+      width: 65%;
+      background-color: #151e2a;         /* panel background */
+      color: #e3e9f2;
+      border-radius: 14px;
+      border: 1px solid #2e3f54;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    #main-content h2 {
+      margin-top: 0;
+      color: #4dd0e1;                    /* accent cyan */
+    }
+
+    #main-content p {
+      margin-bottom: 15px;
+      color: #a0b3c9;                    /* secondary text */
+    }
+
+    #sidebar {
+      padding: 30px;                     /* Part 2: changed from 20px to 30px */
+      vertical-align: top;
+      display: inline-block;
+      width: 30%;
+      margin-left: 5%;                   /* Part 3: totals 100% */
+      float: right;                      /* Part 3: sits on the right */
+      background-color: #1e2a3a;         /* lighter panel background */
+      color: #e3e9f2;
+      border-radius: 14px;
+      border: 1px solid #2e3f54;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    #sidebar h3 {
+      margin-top: 0;
+      font-size: 1.2em;
+      color: #4dd0e1;                    /* accent cyan */
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Part 1: divider lines between list items */
+    #sidebar li {
+      padding: 8px 0;
+      border-bottom: 1px solid #2e3f54;
+      color: #a0b3c9;
+    }
+
+    /* Remove border on the final item for a cleaner finish */
+    #sidebar li:last-child {
+      border-bottom: none;
+    }
+
+    /* ---------- PART 1 & PART 4: Footer ---------- */
+    footer {
+      padding: 20px;
+      margin-top: 20px;
+      background-color: #151e2a;
+      color: #a0b3c9;
+      text-align: center;                /* Part 1: centre text */
+      position: sticky;                  /* Part 4: sticks to viewport bottom */
+      bottom: 0;
+      border-radius: 14px;
+      border: 1px solid #2e3f54;
+      border-top: 2px solid #4dd0e1;     /* cyan accent line */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Design Blog</h1>
+    <div class="badge">Featured Post</div>
+  </header>
+
+  <div id="main-content">
+    <h2>Understanding CSS Layout</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Fusce id ullamcorper elit. Morbi sed nisl auctor, lobortis metus at, lacinia turpis. Fusce ornare commodo neque condimentum commodo. Aenean elementum tincidunt quam non pulvinar. Praesent enim sem, sagittis nec ex pretium, tempor tincidunt est. In hac habitasse platea dictumst. Maecenas et neque sit amet metus consequat mollis. Nunc non dolor scelerisque, scelerisque nunc nec, feugiat mi. Aliquam efficitur dictum lorem dictum faucibus.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque luctus magna in luctus. Nullam non cursus mi. In et orci tellus. Quisque eget rutrum dolor, pulvinar tincidunt massa. Maecenas sit amet libero eget ligula aliquet aliquam id ultrices mi. Pellentesque vel turpis sem. Aliquam varius accumsan fermentum. Maecenas quis metus elit. Sed nec dui odio. In hac habitasse platea dictumst. Ut venenatis ac nibh sollicitudin tempor. Aliquam mollis nibh a quam accumsan, sit amet vehicula ex pretium. Vivamus lobortis ac eros eu varius. Proin et lectus metus.</p>
+    <p>Phasellus rhoncus placerat viverra. Quisque interdum aliquet risus eu facilisis. Etiam vitae ipsum non tortor consectetur congue nec at mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean molestie lectus sit amet pellentesque volutpat. Maecenas nisi urna, iaculis id est sed, eleifend gravida nibh. Praesent fringilla nisl sed varius venenatis. Nam et cursus sapien, et molestie tortor. Praesent feugiat justo quam, non mollis ante malesuada vestibulum. Praesent cursus nunc neque, ut dignissim tortor mollis eu. Curabitur pretium lorem quis nibh volutpat aliquet. Phasellus ac dui non libero sagittis mollis. Fusce vel odio gravida, consequat lorem id, lobortis libero. Praesent id lacinia lectus.</p>
+  </div>
+
+  <div id="sidebar">
+    <h3>Recent Posts</h3>
+    <ul>
+      <li>Getting Started with CSS</li>
+      <li>HTML Fundamentals</li>
+      <li>Web Design Principles</li>
+      <li>Color Theory Basics</li>
+      <li>Typography on the Web</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 My Design Blog. All rights reserved.</p>
+  </footer>
+</body>
+</html>
